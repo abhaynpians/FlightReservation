@@ -26,7 +26,8 @@ Name on the card: <input type="text" name="nameOnTheCard"/>
 Card No: <input type="text" name="cardNumber"/>
 Expairy Date: <input type="text" name="expirationDate"/>
 CVV No: <input type="text" name="securityCode"/>
-<input type="hidden" value="${flight.id}"/>
+
+<input type="hidden" name="flightId" value="${flight.id}"/>
 
 <input type="submit" value="confirm"/>
 </pre>
