@@ -5,8 +5,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>User Login</title>
-</head>
-<body>
 <form action="login" method="post">
 <pre>
 <h2> Login: </h2>
