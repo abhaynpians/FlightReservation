@@ -2,8 +2,11 @@ package com.abhay.flightreservation.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.abhay.flightreservation.dto.ReservationUpdateRequest;
@@ -20,13 +23,18 @@ public class ReservationRestController {
 	public Reservation findReservation(@PathVariable("id") long id) {
 		return reservationRepo.findById(id).orElse(null);
 	}
-	@RequestMapping("/reservation")
+	
+	@RequestMapping(value="/reservation" , method = RequestMethod.POST)
+	@ResponseBody
 	public Reservation updateReservation(@RequestBody ReservationUpdateRequest request) {
-		Reservation reservation=	reservationRepo.findById(request.getId()).orElse(null);
+		Reservation reservation=reservationRepo.findById(request.getId()).orElse(null);
 		reservation.setCheckedIn(request.getCheckedIn());
 		reservation.setNumberOfBages(request.getNumberOfBages());
 		return reservationRepo.save(reservation);
 	}
+		
+	
+	
 	
 	
 }

@@ -1,6 +1,8 @@
 package com.abhay.flightreservation.controllers;
+import com.abhay.flightreservation.security.SecurityConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,16 +19,20 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository;
 	
+	@Autowired
+	private	BCryptPasswordEncoder bcrypt;
+	
 	@RequestMapping("/showReg")
 	public String showRegistrationPage() {
 		return "login/registerUser";
 	}
 	@RequestMapping(value="/registerUser", method = RequestMethod.POST)
 	public String register(@ModelAttribute(value="user") User user) {
+		user.setPassword(bcrypt.encode(user.getPassword()));
 		userRepository.save(user); 
 		return "login/login";
 	}
-	//@RequestMapping("/login")
+
 	
 	@RequestMapping("/showLogin")
 	public String showLoginPage() {
