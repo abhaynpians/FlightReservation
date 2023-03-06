@@ -134,9 +134,14 @@ form .text h3 a:hover {
 		<h2>Registration</h2>
 		<form action="registerUser" method="post">
 			<div class="input-box">
-				<input type="text" placeholder="Enter your name" required
-					name="name">
+				<input type="text" placeholder="Enter your First name" required
+					name="firstName">
 			</div>
+			<div class="input-box">
+				<input type="text" placeholder="Enter your Last name" required
+					name="lastName">
+			</div>
+			
 			<div class="input-box">
 				<input type="text" placeholder="Enter your email" required
 					name="email">

@@ -23,6 +23,8 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfiguration {
 
+	
+	
 //	 AuthenticationManager authenticationManager;
 
 //	@Bean
