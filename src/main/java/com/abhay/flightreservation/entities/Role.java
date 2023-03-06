@@ -1,20 +1,16 @@
 package com.abhay.flightreservation.entities;
 
 import java.util.Set;
-
-import org.hibernate.annotations.ManyToAny;
 import org.springframework.security.core.GrantedAuthority;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="role")
-public class Role extends AbstractEntity implements GrantedAuthority{
+@Table(name = "role")
+public class Role extends AbstractEntity implements GrantedAuthority {
 	private String name;
-	
+
 	@ManyToMany(mappedBy = "roles")
 	private Set<User> users;
 

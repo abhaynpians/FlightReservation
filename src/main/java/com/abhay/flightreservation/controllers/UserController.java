@@ -1,5 +1,4 @@
 package com.abhay.flightreservation.controllers;
-import com.abhay.flightreservation.security.SecurityConfiguration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -12,45 +11,48 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.abhay.flightreservation.entities.User;
 import com.abhay.flightreservation.repos.UserRepository;
+import com.abhay.flightreservation.services.SecurityService;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	UserRepository userRepository;
 	
 	@Autowired
-	private	BCryptPasswordEncoder bcrypt;
-	
+	SecurityService securityService;
+
+	@Autowired
+	private BCryptPasswordEncoder bcrypt;
+
 	@RequestMapping("/showReg")
 	public String showRegistrationPage() {
 		return "login/registerUser";
 	}
-	@RequestMapping(value="/registerUser", method = RequestMethod.POST)
-	public String register(@ModelAttribute(value="user") User user) {
+
+	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+	public String register(@ModelAttribute(value = "user") User user) {
 		user.setPassword(bcrypt.encode(user.getPassword()));
-		userRepository.save(user); 
+		userRepository.save(user);
 		return "login/login";
 	}
 
-	
 	@RequestMapping("/showLogin")
 	public String showLoginPage() {
 		return "login/login";
 	}
-	
-	
-	@RequestMapping(value="/login",method=RequestMethod.POST)
-	public String login(@RequestParam("email") String email, @RequestParam("password") String password, ModelMap modelMap) {
-		User user=userRepository.findByEmail(email);
-		if(user.getPassword().equals(password)) {
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
+			ModelMap modelMap) {
+		boolean loginResponse = securityService.login(email, password);
+		if (loginResponse) {
 			return "findFlights";
-		}
-		else {
+		} else {
 			modelMap.addAttribute("msg", "Invalid user name of password. please try again.");
-			
+
 		}
-		
+
 		return "login/login";
 	}
 

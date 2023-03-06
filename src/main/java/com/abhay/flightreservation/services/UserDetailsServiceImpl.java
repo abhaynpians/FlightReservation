@@ -14,35 +14,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		
-	User user=userRepository.findByEmail(username);
-	
-	if(user==null) {
-		throw new UsernameNotFoundException("UserNotFound");
-	}
-		
-		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getRoles());
+
+		User user = userRepository.findByEmail(username);
+
+		if (user == null) {
+			throw new UsernameNotFoundException("UserNotFound");
+		}
+
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+				user.getRoles());
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>User Login</title>
 <form action="login" method="post">
-<pre>
+	<pre>
 <h2> Login: </h2>
 User Name: <input type="text" name="email">
 Password: <input type="password" name="password">
@@ -14,7 +14,5 @@ Password: <input type="password" name="password">
 ${msg}
 </pre>
 </form>
-
-
 </body>
 </html>

@@ -15,18 +15,19 @@ import com.abhay.flightreservation.repos.FlightRepository;
 
 @Controller
 public class FlightController {
-	
+
 	@Autowired
 	FlightRepository flightRepository;
-	
-	
+
 	@RequestMapping("/findFlights")
-	public String findFlights(@RequestParam("from") String from , @RequestParam("to") String to, @RequestParam("departureDate") @DateTimeFormat(pattern = "MM-dd-yyyy") Date departureDate , ModelMap modelMap) {
-	List<Flight> flights=flightRepository.findAll(from,to,departureDate);
-	modelMap.addAttribute("flights", flights);	
-	return "displayFlights";
+	public String findFlights(@RequestParam("from") String from, @RequestParam("to") String to,
+			@RequestParam("departureDate") @DateTimeFormat(pattern = "MM-dd-yyyy") Date departureDate,
+			ModelMap modelMap) {
+		List<Flight> flights = flightRepository.findAll(from, to, departureDate);
+		modelMap.addAttribute("flights", flights);
+		return "displayFlights";
 	}
-	
+
 	@RequestMapping("admin/showAddFlight")
 	public String showAddFlight() {
 		return "addFlight";

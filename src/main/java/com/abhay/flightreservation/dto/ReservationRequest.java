@@ -3,10 +3,10 @@ package com.abhay.flightreservation.dto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 
-public class ReservationRequest  {
+public class ReservationRequest {
 
 	@Id
-	@Column(name="flight_id")
+	@Column(name = "flight_id")
 	private long flightId;
 	private String passengerFirstName;
 	private String passengerLastName;
